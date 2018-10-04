@@ -1,13 +1,13 @@
 import React, {
   Component
 } from 'react';
-import {
-  Header
-} from '../styles/--header';
+import { Header, Counter, HighScore } from '../styles/--header';
 import shuffle from 'shuffle-array';
 import Card from './Card';
 import cards from '../cards.json'
 import '../styles/cards.css'
+import '../styles/normalize.css'
+import '../styles/main.css'
 
 
 
@@ -78,8 +78,8 @@ class App extends Component {
     return ( <div className = "App" >
       <Header >
       <h2 > Clicky Game </h2> 
-      <div> counter: {this.state.clickCount} </div>
-      <div> high score: {this.state.highScore} </div>
+      <Counter> counter: {this.state.clickCount} </Counter>
+      <HighScore> high score: {this.state.highScore} </HighScore>
       </Header> 
       <div className = "cards" > 
       { /* map is performed on the shuffled cards */ } 
