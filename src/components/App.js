@@ -26,7 +26,7 @@ class App extends Component {
     console.log("second log")
     console.log(this.state.clickedArr)
 
-    // ========== IF ELSE STATEMENT TO COMPARE CARDS
+    // ========== IF ELSE STATEMENT TO COMPARE CARDS TO THE STATE ARRAY
     if(this.state.clickedArr.includes(newId)){
       console.log("duplicate");
        if(this.state.clickCount > this.state.highScore){
@@ -42,6 +42,14 @@ class App extends Component {
      }
    }
 
+
+   //FUNCTION TO RERENDER CARDS
+   rerenderCards = (e) => {
+     let shuffledCards = shuffle(this.state.cards);
+     console.log(shuffledCards);
+     this.setState({cards:shuffledCards});
+    //  console.log(shuffledCards);
+   }
   
   
   
@@ -65,14 +73,15 @@ class App extends Component {
 
    
     //on click of the picture component is forced to rerender calling the randomize function in the return statement
-    this.forceUpdate()
+    // this.forceUpdate()
+    this.rerenderCards();
   }
 
 
   render() {
 
     //shuffle happens here
-    const shuffledCards = shuffle(this.state.cards);
+    // const shuffledCards = shuffle(this.state.cards);
 
 
     return ( <div className = "App" >
@@ -83,7 +92,7 @@ class App extends Component {
       </Header> 
       <div className = "cards" > 
       { /* map is performed on the shuffled cards */ } 
-       {shuffledCards.map(card => (
+       {this.state.cards.map(card => (
           <Card cards = {this.state.cards}
           handleClick = {this.handleClick}
           image = {card.image}
